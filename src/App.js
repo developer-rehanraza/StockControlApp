@@ -2,12 +2,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 import { StockOverviewPage } from "./pages/StockOverviewPage";
 import { StockDetailPage } from "./pages/StockDetailPage";
-
+import { WatchListContextProvider } from "./context/watchListContext"
 
 function App() {
   return (
     <main className="container"> 
-      {/* <WatchListContextProvider> */}
+      <WatchListContextProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element=
@@ -17,7 +17,7 @@ function App() {
             <StockDetailPage />} />
         </Routes>
         </BrowserRouter>
-      
+      </WatchListContextProvider>
     </main>
   );
 }

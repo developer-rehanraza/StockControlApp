@@ -1,10 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
 import finnHub from "../apis/finnHub";
-// import { render } from "@testing-library/react";
+import { WatchListContext } from "../context/watchListContext";
+
+
 export const Rehan = () => {
-    const [stock, setStock]=useState([])
-    const [watchList, setWatchList] = useState(["GOOGL", "MSFT", "AMZN"])
+    const [stock, setStock] = useState([])
+    
+    // const [watchList, setWatchList] = useState(["GOOGL", "MSFT", "AMZN"])
+
+    const {watchList}= useContext(WatchListContext)
+    // console.log(value);
 
     const changeColor = (change) => {
     return change > 0 ? "success" : "danger"
@@ -52,7 +58,7 @@ export const Rehan = () => {
 
 
         return()=>  (isMounted = false)
-    }, [])
+    }, [watchList])
     
     return <div>
         <table className="table hover mt-5 mx-auto">
