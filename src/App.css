@@ -9,3 +9,16 @@
 .table-row:hover .delete-button{
     visibility: visible;
 }
+
+
+@media screen and (max-width:552px) {
+     
+    .my-table{
+
+        /* border: 2px solid black; */
+    
+        font-size: .6rem;
+        margin: 0 2rem;
+    }
+
+}

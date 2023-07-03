@@ -65,7 +65,7 @@ export const Rehan = () => {
     }
     
     return <div>
-        <table className="table hover mt-5 mx-auto">
+        <table className="table hover mt-5 mx-auto my-table">
             <thead style={{ color: "rgba(79,89,102" }}>
                 <tr>
                     <th scope="col">Name</th>
