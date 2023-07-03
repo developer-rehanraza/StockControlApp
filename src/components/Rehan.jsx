@@ -1,4 +1,5 @@
-import { useState, useEffect,useContext } from "react";
+import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
 import finnHub from "../apis/finnHub";
 import { WatchListContext } from "../context/watchListContext";
@@ -6,10 +7,8 @@ import { WatchListContext } from "../context/watchListContext";
 
 export const Rehan = () => {
     const [stock, setStock] = useState([])
-    
-    // const [watchList, setWatchList] = useState(["GOOGL", "MSFT", "AMZN"])
-
-    const {watchList}= useContext(WatchListContext)
+    const { watchList } = useContext(WatchListContext)
+    const navigate = useNavigate()
     // console.log(value);
 
     const changeColor = (change) => {
@@ -32,11 +31,11 @@ export const Rehan = () => {
                            symbol: stock
                        }
                    })
-               }))
-
-
-
+                }))
+                
+                
                 console.log(responces)
+
                 const data = responces.map((responce) => {
                     return{
                         data: responce.data,
@@ -55,10 +54,15 @@ export const Rehan = () => {
             }
         }
         fetchData()
-
+        
 
         return()=>  (isMounted = false)
     }, [watchList])
+
+    const handleStockSelect = (symbol) => {
+        navigate(`detail/${symbol}`)
+        
+    }
     
     return <div>
         <table className="table hover mt-5 mx-auto">
@@ -77,7 +81,7 @@ export const Rehan = () => {
             <tbody>
                 {stock.map((stockData) => {
                     return (
-                        <tr className="table-row" key={stockData.symbol}>
+                        <tr style={{cursor: "pointer"}} onClick={()=> handleStockSelect(stockData.symbol)} className="table-row" key={stockData.symbol}>
                             <th scope="row">{stockData.symbol}</th>
                             <td > {stockData.data.c}</td>
                             <td className={`text-${changeColor(stockData.data.d)}`}>{stockData.data.d}
@@ -94,6 +98,7 @@ export const Rehan = () => {
                 }
             </tbody>
         </table>
+    
     
 </div>
 }
